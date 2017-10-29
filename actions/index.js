@@ -1,5 +1,7 @@
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES'
 export const ADD_ENTRY = 'ADD_ENTRY'
+export const ACTIVATE_DECK = 'ACTIVATE_DECK'
+
 
 export function receiveEntries (entries) {
   return {
@@ -15,3 +17,10 @@ export function addEntry (entry) {
   }
 }
 
+export function activateDeck ({key, deck}) {
+  return {
+    type: ACTIVATE_DECK,
+    key,
+    deck,
+  }
+}
