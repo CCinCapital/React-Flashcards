@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { TouchableOpacity, KeyboardAvoidingView, View, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addCard } from '../actions'
+import { addCardToDeck } from '../utils/api'
 
 class NewCardScreen extends Component {
   state = {
@@ -14,8 +15,10 @@ class NewCardScreen extends Component {
   Submit = () => {
     const key = this.props.deckKey
     const card = this.state
+    const { dispatch } = this.props
 
-    this.props.dispatch(addCard({key, card}))
+    addCardToDeck({key, card})
+      .then(dispatch(addCard({key, card})))
 
     this.goBack()
   }

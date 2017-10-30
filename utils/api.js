@@ -11,3 +11,13 @@ export function addDeck ({ key, deck }) {
     [key]: deck
   }))
 }
+
+export function addCardToDeck ({ key, card }) {
+  return AsyncStorage.getItem(ENTRY_STORAGE_KEY)
+          .then(data => {
+            const decks = JSON.parse(data)
+            decks[key].cards.push(card)
+
+            AsyncStorage.setItem(ENTRY_STORAGE_KEY, JSON.stringify(decks))
+          })
+}
