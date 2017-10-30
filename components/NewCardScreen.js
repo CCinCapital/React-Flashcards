@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
+    minHeight: 400,
     margin: 20,
     borderRadius: 20,
     backgroundColor: '#f6f7eb',    
