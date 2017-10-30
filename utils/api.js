@@ -21,3 +21,7 @@ export function addCardToDeck ({ key, card }) {
             AsyncStorage.setItem(ENTRY_STORAGE_KEY, JSON.stringify(decks))
           })
 }
+
+export function clearDecks () {
+  AsyncStorage.clear()
+}
