@@ -25,13 +25,13 @@ class DeckScreen extends Component {
   render() {
     const _deckIndex = this.props.activeDeck.key
     const _deckTitle = this.props.decks[_deckIndex].title
-    const _deckDiscr = this.props.decks[_deckIndex].cards.length
+    const _totalCards = this.props.decks[_deckIndex].cards.length
 
     return (
       <View style={styles.deck}>
         <View>
           <Text style={styles.title}>{_deckTitle}</Text>
-          <Text style={styles.discr}>{_deckDiscr} cards</Text>
+          <Text style={styles.discr}>{_totalCards} cards</Text>
         </View>
 
         <View>
@@ -41,6 +41,7 @@ class DeckScreen extends Component {
             style={styles.addBtn}
           />
           <Button
+            disabled={_totalCards === 0 ? true : false}
             onPress={this.StartQuiz}
             title='Start Quiz'
             style={styles.strBtn}
