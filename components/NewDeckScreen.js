@@ -5,7 +5,6 @@ import { NavigationActions } from 'react-navigation'
 import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addEntry } from '../actions'
-import { submitEntry } from '../utils/api'
 
 class NewDeckScreen extends Component {
   state = {
@@ -63,9 +62,6 @@ class NewDeckScreen extends Component {
             style={styles.crtBtn}
           />
         </View>
-        <Text>
-          {JSON.stringify(this.state)}
-        </Text>
       </View>
     )
   }

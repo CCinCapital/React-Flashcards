@@ -52,7 +52,6 @@ class NewCardScreen extends Component {
             style={styles.crtBtn}
           />
         </View>
-        <Text>{JSON.stringify(this.props.deckToPost)}</Text>
       </View>
     )
   }
