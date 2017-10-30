@@ -17,10 +17,9 @@ export function addEntry (entry) {
   }
 }
 
-export function activateDeck ({key, deck}) {
+export function activateDeck (key) {
   return {
     type: ACTIVATE_DECK,
     key,
-    deck,
   }
 }

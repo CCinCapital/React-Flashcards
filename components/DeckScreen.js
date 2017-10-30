@@ -23,11 +23,15 @@ class DeckScreen extends Component {
   }
 
   render() {
+    const _deckIndex = this.props.activeDeck.key
+    const _deckTitle = this.props.decks[_deckIndex].title
+    const _deckDiscr = this.props.decks[_deckIndex].cards.length
+
     return (
       <View style={styles.deck}>
         <View>
-          <Text style={styles.title}>{this.props.activeDeck.deck.title}</Text>
-          <Text style={styles.discr}>{this.props.activeDeck.deck.cards.length} cards</Text>
+          <Text style={styles.title}>{_deckTitle}</Text>
+          <Text style={styles.discr}>{_deckDiscr} cards</Text>
         </View>
 
         <View>
@@ -71,8 +75,9 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps({activeDeck}) {
+function mapStateToProps({store, activeDeck}) {
   return {
+    decks: store,
     activeDeck: activeDeck,
   }
 }

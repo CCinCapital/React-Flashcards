@@ -14,8 +14,7 @@ class HomeScreen extends Component {
     })
     
     const key = decks[0]
-    const deck = decks[1]
-    this.props.dispatch(activateDeck({key, deck}))
+    this.props.dispatch(activateDeck(key))
     
     this.props.navigation.dispatch(navigateAction)
   }

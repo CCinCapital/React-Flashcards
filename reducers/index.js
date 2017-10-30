@@ -74,7 +74,6 @@ function activeDeck (state = {}, action) {
       return {
         ...state,
         key: action.key,
-        deck: action.deck,
       }
     default : 
       return state
