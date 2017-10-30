@@ -7,18 +7,21 @@ This Mobile Flashcards App was bootstrapped with [Create React Native App](https
 - This project requires `npm`, if you don't have `npm` installed, check this tutorial: [How To Install NPM](https://docs.npmjs.com/getting-started/installing-node)
 - This project requires `expo` on your mobile phone, you may find it in the App store of your platform.
 
-### installation
+### Installation
 Pick either path:
-#### Download .zip and extract
+<hr>
+
+#### - Download .zip and extract
 - Download the `.zip` packet => [Click To Download](https://github.com/CCinCapital/React-Flashcards/archive/master.zip)
 - Extract the downloaded `React-Flashcards-master.zip` to your working directory.
 - Open terminal
 
-#### Clone the repository
+#### - Clone the repository
 - Open terminal
 - `git clone https://github.com/CCinCapital/React-Flashcards.git`
+<hr>
 
-And proceed:
+Then proceed:
 - ` cd React-Flashcards`
 - `npm install`
 Wait the installation to complete, then
