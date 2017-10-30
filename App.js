@@ -43,6 +43,10 @@ const MyDecksTab = TabNavigator(
   },
   tabBarOptions: {
     activeTintColor: '#fff',
+    style: {
+      height: 45,
+      backgroundColor: '#444054',
+    }
   }
 })
 
@@ -69,6 +73,13 @@ const RootNav = StackNavigator(
 },
 {
   initialRouteName: 'Home',
+  navigationOptions: {
+    headerTintColor: '#fff',
+    headerStyle: {
+      height: 45,
+      backgroundColor: '#444054',
+    }
+  }
 })
 
 export default class App extends React.Component {
