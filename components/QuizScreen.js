@@ -21,7 +21,7 @@ class QuizScreen extends Component {
 
   componentDidMount() {
     clearLocalNotification()
-      .then(setLocalNotification)    
+      .then(setLocalNotification())    
   }
 
   ShowAnswer = () => {
