@@ -13,7 +13,7 @@ function createNotification () {
     android: {
       sound: true,
       priority: 'high',
-      sticky: 'false',
+      sticky: false,
       vibrate: true,
     }
   }
@@ -33,6 +33,7 @@ export function setLocalNotification () {
               tomorrow.setDate(tomorrow.getDate() + 1)
               tomorrow.setHours(20)
               tomorrow.setMinutes(0)
+              tomorrow.setSeconds(10)
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
@@ -40,16 +41,20 @@ export function setLocalNotification () {
                   time: tomorrow,
                   repeat: 'day',
                 }
-              )
+              ).then(console.log)
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
             }
           })
-      }
+        }
     })
 }
 
 export function clearLocalNotification () {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
           .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
+export function sendLocalNotificationNow () {
+  Notifications.presentLocalNotificationAsync(createNotification())
 }
