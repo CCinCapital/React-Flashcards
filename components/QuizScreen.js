@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { Button, View, Text, StyleSheet } from 'react-native'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import QuizView from './QuizScreen/QuizView'
 import FinalScoreView from './QuizScreen/FinalScoreView'
 
@@ -16,6 +17,11 @@ class QuizScreen extends Component {
   componentWillMount() {
     const _title = this.props.deck.title
     this.props.navigation.setParams({name: _title})
+  }
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification)    
   }
 
   ShowAnswer = () => {
