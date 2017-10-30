@@ -7,7 +7,7 @@ This Mobile Flashcards App was bootstrapped with [Create React Native App](https
 - This project requires `npm`, if you don't have `npm` installed, check this tutorial: [How To Install NPM](https://docs.npmjs.com/getting-started/installing-node)
 - This project requires `expo` on your mobile phone, you may find it in the App store of your platform.
 
-### Installation
+## Installation
 Pick either path:
 <hr>
 
