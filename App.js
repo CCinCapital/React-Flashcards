@@ -57,7 +57,7 @@ const RootNav = StackNavigator(
   NewCardScreen: {
     screen: NewCardScreen,
     navigationOptions: {
-      header: null
+      title: 'Create New Card'
     }
   },
   QuizScreen: {
