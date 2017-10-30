@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation'
-import { ScrollView, View, Text, TextInput, StyleSheet } from 'react-native'
+import { ScrollView, View, Button, Text, TextInput, StyleSheet } from 'react-native'
 import { receiveDecks, activateDeck } from '../actions'
-import { fetchDecks } from '../utils/api'
+import { fetchDecks, clearDecks } from '../utils/api'
 import { AppLoading } from 'expo'
 
 import Deck from './Deck'
@@ -57,6 +57,12 @@ class HomeScreen extends Component {
           })
         }
         <View style={styles.bottomSpacer}></View>
+        {
+          Object.keys(decks).length === 0
+            ? null
+            : <Button title='WARNING: WIPE ASYNCSTORAGE' onPress={clearDecks}/>
+        }
+        
       </ScrollView>
     )
   }
