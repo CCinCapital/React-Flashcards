@@ -1,8 +1,23 @@
 {
   "expo": {
     "sdkVersion": "22.0.0",
+    "orientation": "portrait",
+    "name": "Flashcards",
+    "description": "My android app.",
+    "slug": "flashcards",
+    "version": "1.0",
+    "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png",
+    "notification": {
+      "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png"
+    },
     "loading": {
-      "backgroundColor" : "#ccc"
+      "backgroundColor": "#ccc"
+    },
+    "ios": {
+      "bundleIdentifier": "com.canchen.flashcards",
+    },
+    "android": {
+      "package": "com.canchen.flashcards",
     }
-  }
+  },
 }
