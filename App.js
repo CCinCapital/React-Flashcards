@@ -62,6 +62,9 @@ const RootNav = StackNavigator(
   },
   QuizScreen: {
     screen: QuizScreen,
+    navigationOptions: ({navigation}) => ({
+      title: `${navigation.state.params ? navigation.state.params.name : ''}`,
+    })
   }
 },
 {
