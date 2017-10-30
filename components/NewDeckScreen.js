@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation'
-import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
+import { Button, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addEntry, activateDeck } from '../actions'
 
@@ -48,25 +48,23 @@ class NewDeckScreen extends Component {
 
   render() {
     return (
-      <View style={styles.deck}>
-        <View>
-          <Text style={styles.title}>What's the title of your new deck?</Text>
-          <TextInput
-            style={styles.txtInp} 
-            placeholder='Deck Title'
-            autoCapitalize= 'words'
-            onChangeText={this.handleEdit}
-            clearTextOnFocus={true}
-            ref={component => this._textInput = component}
-          />
-          <Button
-            disabled={this.state.title === '' ? true : false}
-            onPress={this.Submit}
-            title='Submit'
-            style={styles.crtBtn}
-          />
-        </View>
-      </View>
+      <KeyboardAvoidingView style={styles.deck} behavior='padding'>
+        <Text style={styles.title}>What's the title of your new deck?</Text>
+        <TextInput
+          style={styles.txtInp} 
+          placeholder='Deck Title'
+          autoCapitalize= 'words'
+          onChangeText={this.handleEdit}
+          clearTextOnFocus={true}
+          ref={component => this._textInput = component}
+        />
+        <Button
+          disabled={this.state.title === '' ? true : false}
+          onPress={this.Submit}
+          title='Submit'
+          style={styles.crtBtn}
+        />
+      </KeyboardAvoidingView>
     )
   }
 }
