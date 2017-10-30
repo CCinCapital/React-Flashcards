@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { ADD_ENTRY, RECEIVE_ENTRIES, ACTIVATE_DECK } from '../actions'
+import { ADD_ENTRY, ADD_CARD, RECEIVE_ENTRIES, ACTIVATE_DECK } from '../actions'
 
 const initialState = {
   React: {
@@ -8,28 +8,12 @@ const initialState = {
     cards: [
       {
         question: 'What is React?',
-        choices: [
-          {
-            answer: 'A library for managing user interfaces',
-            isCorrect: true,            
-          },
-          {
-            answer: 'A library for managing user experiences',               
-          }
-        ],
+        answer: 'A library for managing user interfaces',              
       },
       {
         question: 'Where do you make Ajax requests in React?',
-        choices: [
-          {
-            answer: 'The componentDidMount lifecycle event',
-            isCorrect: true,
-          },
-          {
-            answer: 'The componentWillMount lifecycle event',
-          }
-        ]
-      }
+        answer: 'The componentDidMount lifecycle event',
+      },
     ]
   },
   JavaScript: {
@@ -37,16 +21,8 @@ const initialState = {
     cards: [
       {
         question: 'What is a closure?',
-        choices: [
-          {
-            answer: 'The combination of a function and the lexical environment within which that function was declared.',
-            isCorrect: true
-          },
-          {
-            answer: 'The combination of a variable and the lexical environment within which that function was declared.',
-          }
-        ]
-      }
+        answer: 'The combination of a function and the lexical environment within which that function was declared.',
+      },
     ]
   }
 }
@@ -63,6 +39,14 @@ function store (state = initialState, action) {
         ...state,
         ...action.entry,
       }
+    case ADD_CARD :
+      return {
+        ...state,
+        [action.key] : {
+          ...state[action.key],
+          cards : [...state[action.key].cards, action.card],
+        }
+      }
     default : 
       return state
   }
@@ -74,7 +58,6 @@ function activeDeck (state = {}, action) {
       return {
         ...state,
         key: action.key,
-        deck: action.deck,
       }
     default : 
       return state

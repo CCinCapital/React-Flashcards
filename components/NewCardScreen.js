@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
 
-import { NavigationActions } from 'react-navigation'
+import { addCard } from '../actions'
 
 class NewCardScreen extends Component {
+  state = {
+    question: null,
+    answer: null,
+  }
 
   Submit = () => {
+    const key = this.props.deckKey
+    const card = this.state
+
+    this.props.dispatch(addCard({key, card}))
 
     this.goBack()
   }
@@ -22,14 +32,27 @@ class NewCardScreen extends Component {
     return (
       <View style={styles.deck}>
         <View>
-          <TextInput style={styles.txtInp} placeholder='Quiz Question' />
-          <TextInput style={styles.txtInp} placeholder='Quiz Answer' />
+          <TextInput 
+            style={styles.txtInp} 
+            placeholder='Quiz Question' 
+            onChangeText={(e) => (this.setState(() => ({
+              question: e,
+            })))}
+          />
+          <TextInput 
+            style={styles.txtInp} 
+            placeholder='Quiz Answer' 
+            onChangeText={(e) => (this.setState(() => ({
+              answer: e,
+            })))}
+          />
           <Button
             onPress={this.Submit}
             title='Submit'
             style={styles.crtBtn}
           />
         </View>
+        <Text>{JSON.stringify(this.props.deckToPost)}</Text>
       </View>
     )
   }
@@ -59,4 +82,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default NewCardScreen
+function mapStateToProps({activeDeck}) {
+  return {
+    deckKey: activeDeck.key,
+  }
+}
+
+export default connect(mapStateToProps)(NewCardScreen)
