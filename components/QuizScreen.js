@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { NavigationActions } from 'react-navigation'
 import { Button, View, Text, StyleSheet } from 'react-native'
-
-function TextAnswer ({children}) {
-  return (
-    <Text>
-      {children}
-    </Text>
-  )
-}
+import QuizView from './QuizScreen/QuizView'
+import FinalScoreView from './QuizScreen/FinalScoreView'
 
 class QuizScreen extends Component {
   state = {
     index: 0,
     showAnswer: false,
+    correctAnswers: 0,
+    over: false,
   }
 
   componentWillMount() {
@@ -28,16 +24,43 @@ class QuizScreen extends Component {
     }))
   }
 
-  Submit = () => {
+  Correct = () => {
+    const correctAnswers = this.state.correctAnswers + 1
+    this.setState(() => ({
+      correctAnswers: correctAnswers,
+    }))
 
-    this.next()
+    this.Next()
   }
 
-  next = () => {
+  Next = () => {
     const index = this.state.index + 1
+    if (index === this.props.deck.cards.length) {
+      this.setState(() => ({
+        over: true,
+      }))
+    }
+    else {
+      this.setState(() => ({
+        index: index,
+        showAnswer: false,
+      }))    
+    }
+
+  }
+
+  Restart = () => {
     this.setState(() => ({
-      index: index,
+      index: 0,
+      showAnswer: false,
+      correctAnswers: 0,
+      over: false,
     }))
+  }
+
+  GoBack = () => {
+    const backAction = NavigationActions.back()
+    this.props.navigation.dispatch(backAction)    
   }
 
   render() {
@@ -47,35 +70,27 @@ class QuizScreen extends Component {
           _answer = this.props.deck.cards[_currentIndex].answer
 
     return (
-      <View style={styles.deck}>
-        <Text style={styles.index}>{this.state.index + 1} / {_totalQuestions}</Text>
-        <View>
-          <Text style={styles.title}>{_currentQuestion}</Text>
-          {
-            this.state.showAnswer 
-            ? <TextAnswer>
-                {_answer}
-              </TextAnswer>
-            : <Button
-                onPress={(this.ShowAnswer)}
-                title='Answer'
-                style={styles.ansBtn}
+      <View style = {styles.deck}>
+        {
+          this.state.over
+            ? <FinalScoreView
+                count = {this.state.correctAnswers}
+                total = {_totalQuestions}
+                onPressRestart = {this.Restart} 
+                onPressGoBack = {this.GoBack}
               />
-          }
-        </View>
-
-        <View>
-          <Button
-            onPress={this.Submit}
-            title='Correct'
-            style={styles.corrBtn}
-          />
-          <Button
-            onPress={this.Submit}
-            title='Incorrect'
-            style={styles.incorrBtn}
-          />
-        </View>
+            : <QuizView
+                index = {_currentIndex+1}
+                count = {_totalQuestions}
+                question = {_currentQuestion}
+                answer = {_answer}
+                showAnswer = {this.state.showAnswer} 
+                onPressShowAnswer = {this.ShowAnswer} 
+                onPressCorrect = {this.Correct} 
+                onPressIncorrect = {this.Next} 
+                styles = {styles}
+              />
+        }
       </View>
     )
   }
