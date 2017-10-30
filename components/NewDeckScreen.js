@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
 
-import { addEntry } from '../actions'
+import { addEntry, activateDeck } from '../actions'
 
 class NewDeckScreen extends Component {
   state = {
@@ -33,14 +33,17 @@ class NewDeckScreen extends Component {
 
     this._textInput.clear()
 
-    this.toHome()
+    this.toDeck(key)
   }
 
-  toHome = () => {
-    const backAction = NavigationActions.back({
-      key: 'NewDeckScreen'
+  toDeck = (key) => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'DeckScreen',
     })
-    this.props.navigation.dispatch(backAction)
+
+    this.props.dispatch(activateDeck(key))
+
+    this.props.navigation.dispatch(navigateAction)
   }
 
   render() {
