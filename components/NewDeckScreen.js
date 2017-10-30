@@ -5,10 +5,12 @@ import { NavigationActions } from 'react-navigation'
 import { TouchableOpacity, View, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addEntry, activateDeck } from '../actions'
+import { addDeck } from '../utils/api'
 
 class NewDeckScreen extends Component {
   state = {
     title: '',
+    cards: [],
   }
 
   handleEdit = (e) => {
@@ -19,16 +21,17 @@ class NewDeckScreen extends Component {
 
   Submit = () => {
     const key = this.state.title
+    const deck = this.state
 
     this.props.dispatch(addEntry({
-      [key] : {
-        title: key,
-        cards: [],
-      }
+      [key] : deck
     }))
 
+    addDeck({key, deck})
+
     this.setState(() => ({
-      title: ''
+      title: '',
+      cards: [],
     }))
 
     this._textInput.clear()

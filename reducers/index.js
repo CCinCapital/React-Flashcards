@@ -1,38 +1,15 @@
 import { combineReducers } from 'redux'
 
-import { ADD_ENTRY, ADD_CARD, RECEIVE_ENTRIES, ACTIVATE_DECK } from '../actions'
+import { ADD_ENTRY, ADD_CARD, RECEIVE_DECKS, ACTIVATE_DECK } from '../actions'
 
-const initialState = {
-  React: {
-    title: 'React',
-    cards: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces',              
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event',
-      },
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    cards: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.',
-      },
-    ]
-  }
-}
+function store (state = {}, action) {
+  switch(action.type) {   
+    case RECEIVE_DECKS :
+      const decks = JSON.parse(action.decks)
 
-function store (state = initialState, action) {
-  switch(action.type) {
-    case RECEIVE_ENTRIES :
       return {
         ...state,
-        ...action.entries,
+        ...decks,
       }
     case ADD_ENTRY : 
       return {

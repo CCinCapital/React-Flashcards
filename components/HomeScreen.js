@@ -3,11 +3,26 @@ import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation'
 import { ScrollView, View, Text, TextInput, StyleSheet } from 'react-native'
-import { activateDeck } from '../actions'
+import { receiveDecks, activateDeck } from '../actions'
+import { fetchDecks } from '../utils/api'
+import { AppLoading } from 'expo'
 
 import Deck from './Deck'
 
 class HomeScreen extends Component {
+
+  state = {
+    ready : false,
+  }
+
+  componentDidMount () {
+    const { dispatch } = this.props
+
+    fetchDecks()
+      .then((decks) => {dispatch(receiveDecks(decks))})
+      .then(() => this.setState({ready: true}))
+  }
+
   goDeck = (decks) => {
     const navigateAction = NavigationActions.navigate({
       routeName: 'DeckScreen',
@@ -20,10 +35,17 @@ class HomeScreen extends Component {
   }
 
   render() {
+    const { decks } = this.props
+    const { ready } = this.state
+
+    if(ready === false) {
+      return <AppLoading />
+    }
+
     return (
       <ScrollView style={styles.screen}>
         {
-          Object.entries(this.props.decks).map((deck, index) => {
+          Object.entries(decks).map((deck, index) => {
             return (
               <Deck 
                 key={index}
