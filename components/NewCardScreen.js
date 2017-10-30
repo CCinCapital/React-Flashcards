@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
+import { Button, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addCard } from '../actions'
 
@@ -30,30 +30,28 @@ class NewCardScreen extends Component {
 
   render() {
     return (
-      <View style={styles.deck}>
-        <View>
-          <TextInput 
-            style={styles.txtInp} 
-            placeholder='Quiz Question' 
-            onChangeText={(e) => (this.setState(() => ({
-              question: e,
-            })))}
-          />
-          <TextInput 
-            style={styles.txtInp} 
-            placeholder='Quiz Answer' 
-            onChangeText={(e) => (this.setState(() => ({
-              answer: e,
-            })))}
-          />
-          <Button
-            disabled={this.state.question === '' || this.state.answer === '' ? true : false}
-            onPress={this.Submit}
-            title='Submit'
-            style={styles.crtBtn}
-          />
-        </View>
-      </View>
+      <KeyboardAvoidingView style={styles.deck} behavior='padding'>
+        <TextInput 
+          style={styles.txtInp} 
+          placeholder='Quiz Question' 
+          onChangeText={(e) => (this.setState(() => ({
+            question: e,
+          })))}
+        />
+        <TextInput 
+          style={styles.txtInp} 
+          placeholder='Quiz Answer' 
+          onChangeText={(e) => (this.setState(() => ({
+            answer: e,
+          })))}
+        />
+        <Button
+          disabled={this.state.question === '' || this.state.answer === '' ? true : false}
+          onPress={this.Submit}
+          title='Submit'
+          style={styles.crtBtn}
+        />
+      </KeyboardAvoidingView>
     )
   }
 }
