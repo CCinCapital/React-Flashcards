@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import { Button, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
+import { TouchableOpacity, KeyboardAvoidingView, View, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addCard } from '../actions'
 
@@ -30,54 +30,80 @@ class NewCardScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.deck} behavior='padding'>
-        <TextInput 
-          style={styles.txtInp} 
-          placeholder='Quiz Question' 
-          onChangeText={(e) => (this.setState(() => ({
-            question: e,
-          })))}
-        />
-        <TextInput 
-          style={styles.txtInp} 
-          placeholder='Quiz Answer' 
-          onChangeText={(e) => (this.setState(() => ({
-            answer: e,
-          })))}
-        />
-        <Button
-          disabled={this.state.question === '' || this.state.answer === '' ? true : false}
-          onPress={this.Submit}
-          title='Submit'
-          style={styles.crtBtn}
-        />
+      <KeyboardAvoidingView style={styles.screen} behavior='padding'>
+        <View style={styles.card}>
+          <View style={styles.inputWraper}>
+            <TextInput 
+              style={styles.textInput} 
+              placeholder='Quiz Question' 
+              onChangeText={(e) => (this.setState(() => ({
+                question: e,
+              })))}
+            />
+            <TextInput 
+              style={styles.textInput} 
+              placeholder='Quiz Answer' 
+              onChangeText={(e) => (this.setState(() => ({
+                answer: e,
+              })))}
+            />
+          </View>
+          <View style={styles.btnWraper}>
+            <TouchableOpacity
+              style={this.state.question === '' || this.state.answer === '' ? styles.btnDisabled : styles.btn}
+              disabled={this.state.question === '' || this.state.answer === '' ? true : false}
+              onPress={this.Submit}
+            >
+              <Text style={styles.btnText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </KeyboardAvoidingView>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  deck: {
+  screen: {
     flex: 1,
-    paddingLeft: 40,
-    paddingRight: 40,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    backgroundColor: '#393e41',
   },
-  title: {
-    fontSize: 40,
-    paddingTop: 40,
-    textAlign: 'center',
-  },
-  txtInp: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderStyle: 'solid',
-    paddingTop: 10,
+  card: {
+    flex: 1,
+    margin: 20,
+    borderRadius: 20,
+    backgroundColor: '#f6f7eb',    
   },  
-  crtBtn : {
-
+  inputWraper: {
+    flex: 3,
+    paddingTop: 40,
   },
+  textInput: {
+    margin: 20,
+    padding: 20,
+    paddingBottom: 10,
+  },
+  btnWraper: {
+    flex: 1,
+  },
+  btn: {
+    margin: 20,
+    marginTop: 0,
+    padding: 20,
+    backgroundColor: '#09814a',
+    borderRadius: 7,    
+  },
+  btnDisabled: {
+    margin: 20,
+    marginTop: 0,
+    padding: 20,
+    backgroundColor: '#aaa',
+    borderRadius: 7,
+  },
+  btnText: {
+    textAlign: 'center',
+    color: '#eee',
+  }
 })
 
 function mapStateToProps({activeDeck}) {

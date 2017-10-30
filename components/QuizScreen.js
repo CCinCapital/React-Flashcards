@@ -70,7 +70,7 @@ class QuizScreen extends Component {
           _answer = this.props.deck.cards[_currentIndex].answer
 
     return (
-      <View style = {styles.deck}>
+      <View style = {styles.screen}>
         {
           this.state.over
             ? <FinalScoreView
@@ -88,7 +88,6 @@ class QuizScreen extends Component {
                 onPressShowAnswer = {this.ShowAnswer} 
                 onPressCorrect = {this.Correct} 
                 onPressIncorrect = {this.Next} 
-                styles = {styles}
               />
         }
       </View>
@@ -97,27 +96,10 @@ class QuizScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  deck: {
+  screen: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    backgroundColor: '#393e41',
   },
-  index: {
-
-  },
-  title: {
-    fontSize: 40,
-    paddingTop: 40,
-  },
-  ansBtn: {
-
-  },
-  corrBtn : {
-
-  },
-  incorrBtn : {
-
-  }
 })
 
 function mapStateToProps({store, activeDeck}) {

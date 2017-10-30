@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Text } from 'react-native'
 
-export default function TextAnswer ({children}) {
+export default function TextAnswer ({children, style}) {
   return (
-    <Text>
+    <Text style={style}>
       {children}
     </Text>
   )

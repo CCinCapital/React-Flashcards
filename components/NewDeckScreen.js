@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation'
-import { Button, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
+import { TouchableOpacity, View, KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native'
 
 import { addEntry, activateDeck } from '../actions'
 
@@ -48,49 +48,68 @@ class NewDeckScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.deck} behavior='padding'>
-        <Text style={styles.title}>What's the title of your new deck?</Text>
-        <TextInput
-          style={styles.txtInp} 
-          placeholder='Deck Title'
-          autoCapitalize= 'words'
-          onChangeText={this.handleEdit}
-          clearTextOnFocus={true}
-          ref={component => this._textInput = component}
-        />
-        <Button
-          disabled={this.state.title === '' ? true : false}
-          onPress={this.Submit}
-          title='Submit'
-          style={styles.crtBtn}
-        />
+      <KeyboardAvoidingView style={styles.screen} behavior='padding'>
+        <View style={styles.card}>
+          <Text style={styles.title}>What's the title of your new deck?</Text>
+          <TextInput
+            style={styles.textInput} 
+            placeholder='Deck Title'
+            autoCapitalize= 'words'
+            onChangeText={this.handleEdit}
+            clearTextOnFocus={true}
+            ref={component => this._textInput = component}
+          />
+          <TouchableOpacity
+            style={this.state.title === '' ? styles.submitBtnDisabled : styles.submitBtn}
+            disabled={this.state.title === '' ? true : false}
+            onPress={this.Submit}
+          >
+            <Text style={styles.submitBtnText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  deck: {
+  screen: {
     flex: 1,
-    paddingLeft: 40,
-    paddingRight: 40,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    backgroundColor: '#393e41',
+  },
+  card: {
+    flex: 1,
+    margin: 20,
+    borderRadius: 20,
+    backgroundColor: '#f6f7eb',
   },
   title: {
-    fontSize: 40,
-    paddingTop: 40,
+    fontSize: 30,
+    padding: 20,
+    marginTop: 30,
     textAlign: 'center',
   },
-  txtInp: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderStyle: 'solid',
-    paddingTop: 10,
+  textInput: {
+    margin: 20,
+    padding: 20,
+    paddingBottom: 10,
   },  
-  crtBtn : {
-
+  submitBtn: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: '#09814a',
+    borderRadius: 7,
   },
+  submitBtnDisabled: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: '#aaa',
+    borderRadius: 7,
+  },
+  submitBtnText: {
+    textAlign: 'center',
+    color: '#ddd',
+  }
 })
 
 function mapStateToProps(state) {
