@@ -8,7 +8,7 @@ import { addEntry, activateDeck } from '../actions'
 
 class NewDeckScreen extends Component {
   state = {
-    title: null,
+    title: '',
   }
 
   handleEdit = (e) => {
@@ -23,12 +23,12 @@ class NewDeckScreen extends Component {
     this.props.dispatch(addEntry({
       [key] : {
         title: key,
-        cards: []
+        cards: [],
       }
     }))
 
     this.setState(() => ({
-      title: null
+      title: ''
     }))
 
     this._textInput.clear()
@@ -60,7 +60,7 @@ class NewDeckScreen extends Component {
             ref={component => this._textInput = component}
           />
           <Button
-            disabled={this.state.title ? false : true}
+            disabled={this.state.title === '' ? true : false}
             onPress={this.Submit}
             title='Submit'
             style={styles.crtBtn}
