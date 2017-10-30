@@ -60,6 +60,7 @@ class NewDeckScreen extends Component {
             ref={component => this._textInput = component}
           />
           <Button
+            disabled={this.state.title ? false : true}
             onPress={this.Submit}
             title='Submit'
             style={styles.crtBtn}
