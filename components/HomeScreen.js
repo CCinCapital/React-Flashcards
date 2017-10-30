@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation'
 import { ScrollView, View, Button, Text, TextInput, StyleSheet } from 'react-native'
-import { receiveDecks, activateDeck } from '../actions'
+import { receiveDecks, activateDeck, clearAll } from '../actions'
 import { fetchDecks, clearDecks } from '../utils/api'
 import { AppLoading } from 'expo'
 
@@ -34,6 +34,11 @@ class HomeScreen extends Component {
     this.props.navigation.dispatch(navigateAction)
   }
 
+  clearAll = () => {
+    this.props.dispatch(clearAll())
+    clearDecks()
+  }
+
   render() {
     const { decks } = this.props
     const { ready } = this.state
@@ -59,10 +64,9 @@ class HomeScreen extends Component {
         <View style={styles.bottomSpacer}></View>
         {
           Object.keys(decks).length === 0
-            ? null
-            : <Button title='WARNING: WIPE ASYNCSTORAGE' onPress={clearDecks}/>
+            ? <Text style={styles.noDeckText}>No decks found.</Text>
+            : <Button title='WARNING: WIPE ASYNCSTORAGE' onPress={this.clearAll}/>
         }
-        
       </ScrollView>
     )
   }
@@ -93,6 +97,10 @@ const styles = StyleSheet.create ({
   deckDiscr: {
     fontSize: 20,
     color: '#aaa'
+  },
+  noDeckText: {
+    textAlign: 'center',
+    color: 333,
   },
   bottomSpacer: {
     height: 20,

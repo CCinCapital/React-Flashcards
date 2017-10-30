@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { ADD_ENTRY, ADD_CARD, RECEIVE_DECKS, ACTIVATE_DECK } from '../actions'
+import { ADD_ENTRY, ADD_CARD, RECEIVE_DECKS, ACTIVATE_DECK, CLEAR_ALL } from '../actions'
 
 function store (state = {}, action) {
   switch(action.type) {   
@@ -24,6 +24,8 @@ function store (state = {}, action) {
           cards : [...state[action.key].cards, action.card],
         }
       }
+    case CLEAR_ALL :
+      return {}
     default : 
       return state
   }
@@ -36,6 +38,8 @@ function activeDeck (state = {}, action) {
         ...state,
         key: action.key,
       }
+    case CLEAR_ALL :
+      return {}
     default : 
       return state
   }

@@ -2,6 +2,7 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_ENTRY = 'ADD_ENTRY'
 export const ACTIVATE_DECK = 'ACTIVATE_DECK'
 export const ADD_CARD = 'ADD_CARD'
+export const CLEAR_ALL = 'CLEAR_ALL'
 
 
 export function receiveDecks (decks) {
@@ -30,5 +31,11 @@ export function addCard ({key, card}) {
     type: ADD_CARD,
     key,
     card,
+  }
+}
+
+export function clearAll() {
+  return {
+    type: CLEAR_ALL,
   }
 }
