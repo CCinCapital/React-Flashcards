@@ -58,17 +58,20 @@ const RootNav = StackNavigator(
   },
   DeckScreen: { 
     screen: DeckScreen,
+    navigationOptions: {
+      title: 'My Decks'
+    }
   },
   NewCardScreen: {
     screen: NewCardScreen,
-    navigationOptions: {
-      title: 'Create New Card'
-    }
+    navigationOptions: ({navigation}) => ({
+      title: `Deck: ${navigation.state.params ? navigation.state.params.name : ''}`,
+    })
   },
   QuizScreen: {
     screen: QuizScreen,
     navigationOptions: ({navigation}) => ({
-      title: `${navigation.state.params ? navigation.state.params.name : ''}`,
+      title: `Deck: ${navigation.state.params ? navigation.state.params.name : ''}`,
     })
   }
 },

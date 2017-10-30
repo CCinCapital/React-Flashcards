@@ -12,6 +12,11 @@ class NewCardScreen extends Component {
     answer: '',
   }
 
+  componentWillMount() {
+    const _title = this.props.deckKey
+    this.props.navigation.setParams({name: _title})
+  }
+
   Submit = () => {
     const key = this.props.deckKey
     const card = this.state
@@ -36,6 +41,7 @@ class NewCardScreen extends Component {
       <KeyboardAvoidingView style={styles.screen} behavior='padding'>
         <View style={styles.card}>
           <View style={styles.inputWraper}>
+            <Text style={styles.title}>Create New Card</Text>
             <TextInput 
               style={styles.textInput} 
               placeholder='Quiz Question' 
@@ -76,7 +82,12 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 20,
     backgroundColor: '#f6f7eb',    
-  },  
+  },
+  title: {
+    fontSize: 25,
+    padding: 20,
+    textAlign: 'center',
+  },
   inputWraper: {
     flex: 3,
     paddingTop: 40,
