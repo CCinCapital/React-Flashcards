@@ -7,8 +7,8 @@ import { addCard } from '../actions'
 
 class NewCardScreen extends Component {
   state = {
-    question: null,
-    answer: null,
+    question: '',
+    answer: '',
   }
 
   Submit = () => {
@@ -47,6 +47,7 @@ class NewCardScreen extends Component {
             })))}
           />
           <Button
+            disabled={this.state.question === '' || this.state.answer === '' ? true : false}
             onPress={this.Submit}
             title='Submit'
             style={styles.crtBtn}
