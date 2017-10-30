@@ -24,10 +24,13 @@ Pick either path:
 Then proceed:
 - ` cd React-Flashcards`
 - `npm install`
-Wait the installation to complete, then
+
+## Running
 - `npm start`
+
 Now you should see a QR code in your terminal, scan it use `expo`
-:) you are good to go
+
+:) 
 
 
 
