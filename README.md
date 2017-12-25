@@ -1,11 +1,12 @@
 # ReactNative Flashcards
+Built a cross-platform mobile application (Android or iOS) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks. This Mobile Flashcards App was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
-## About
-This Mobile Flashcards App was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
+## Live Preview
+_Live Preview is not availiable, please follow the procedure bellow to test it on your smartphone._
 
 ## !Requirement
 - This project requires `npm`, if you don't have `npm` installed, check this tutorial: [How To Install NPM](https://docs.npmjs.com/getting-started/installing-node)
-- This project requires `expo` on your mobile phone, you may find it in the App store of your platform.
+- This project requires [expo](https://expo.io/) on your mobile phone, you may find it in the App store of your platform.
 
 ## Installation
 Pick either path:
@@ -28,7 +29,8 @@ Then proceed:
 ## Running
 - `npm start`
 
-Now you should see a QR code in your terminal, scan it use `expo`
+## Testing the app on your smartphone
+Now you should see a QR code in your terminal, scan it use [expo](https://expo.io/) to load the app onto your phone.
 
 :) 
 
